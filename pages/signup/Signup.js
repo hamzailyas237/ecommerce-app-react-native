@@ -4,6 +4,8 @@
 
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, Alert, ScrollView } from 'react-native'
+import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
 
 
 const Signup = ({ navigation }) => {
@@ -19,10 +21,25 @@ const Signup = ({ navigation }) => {
 
     const signupUser = () => {
         if (name && email && phone && password) {
-            navigation.navigate('Home')
+            auth()
+                .createUserWithEmailAndPassword(email, password)
+                .then((res) => {
+                    navigation.navigate('Home')
+                    Alert.alert('Sign up message', 'User signed up successfully');
+                    database().ref(`users/${res.user.uid}`).set({
+                        name,
+                        email,
+                        phone,
+                        password
+                    });
+
+                })
+                .catch(error => {
+                    Alert.alert('Sign up error', `${error.message}`);
+                });
         }
         else {
-            Alert.alert('Somethig went wrong', 'Required fields are missing')
+            Alert.alert('Sign up error', 'Required fields are missing')
         }
     }
     return (

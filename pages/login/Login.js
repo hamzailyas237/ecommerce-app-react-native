@@ -4,6 +4,7 @@
 
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, Alert, ScrollView } from 'react-native'
+import auth from '@react-native-firebase/auth';
 
 
 const Login = ({ navigation }) => {
@@ -17,7 +18,14 @@ const Login = ({ navigation }) => {
 
     const loginUser = () => {
         if (email && password) {
-            navigation.navigate('Home')
+            auth().signInWithEmailAndPassword(email, password)
+                .then(() => {
+                    navigation.navigate('Home')
+                    Alert.alert('Sign in message', 'User signed in successfully');
+                })
+                .catch(error => {
+                    Alert.alert('Sign up error', `${error.message}`);
+                });
         }
         else {
             Alert.alert('Somethig went wrong', 'Required fields are missing')

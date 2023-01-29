@@ -2,18 +2,23 @@
 
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { ScrollView, Text, View } from 'react-native'
+import { ActivityIndicator, ScrollView, Text, View } from 'react-native'
 import ProductCard from '../../components/ProductCard';
 
 const Home = () => {
 
     const [products, setProducts] = useState([])
+    const [loader, setLoader] = useState(true)
     useEffect(() => {
         axios.get('https://fakestoreapi.com/products')
             .then((response) => {
                 setProducts(response.data)
+                setLoader(false)
             })
-            .catch(err => console.log('err', err))
+            .catch(err => {
+                console.log('err', err)
+                setLoader(false)
+            })
     }, [])
 
     return (
@@ -21,11 +26,11 @@ const Home = () => {
             <View>
 
                 {
-                    products ? products.map(product => {
-                        return <ProductCard key={product.id} product={product} />
-                    })
+                    loader ? <ActivityIndicator size="large" style={{ marginTop: 10 }} />
                         :
-                        <Text>Loading...</Text>
+                        products && products.map(product => {
+                            return <ProductCard key={product.id} product={product} />
+                        })
                 }
             </View>
         </ScrollView>

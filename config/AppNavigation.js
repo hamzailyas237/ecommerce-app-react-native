@@ -18,7 +18,9 @@ function AppNavigation() {
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="Sign Up" component={Signup} />
                 <Stack.Screen name="Home" component={Home} />
-                <Stack.Screen name="Product Detail" component={ProductDetail} />
+                <Stack.Screen options={{ headerShown: false }}
+                    name="Product Detail" component={ProductDetail}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     );

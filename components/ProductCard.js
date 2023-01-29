@@ -3,11 +3,13 @@
 import React from 'react'
 import { Alert, Text, View, TouchableOpacity } from 'react-native'
 import { Card, Button, Icon } from '@rneui/themed';
+import { useNavigation } from '@react-navigation/native';
 
-const ProductCard = ({ navigation, product }) => {
+const ProductCard = ({ product }) => {
 
+    const navigation = useNavigation();
     const goToProductDetail = () => {
-        navigation.navigate('Product Detail')
+        navigation.navigate('Product Detail', product)
     }
 
     return (
@@ -15,23 +17,19 @@ const ProductCard = ({ navigation, product }) => {
             <Card.Title>{product.title}</Card.Title>
             <Card.Divider />
             <Card.Image
-                style={{ padding: 0 }}
+                resizeMode='contain'
                 source={{
-                    uri:
-                        'https://awildgeographer.files.wordpress.com/2015/02/john_muir_glacier.jpg',
+                    uri: product.image
                 }}
             />
             <Text style={{ marginBottom: 10 }}>
-                {product.price}
-            </Text>
-            <Text style={{ marginBottom: 10 }}>
-                {`${product.rating.rate} ratings`} |
-                {` ${product.rating.count} orders`}
+                {product.price} $
             </Text>
             <TouchableOpacity onPress={goToProductDetail}>
-                <Text style={{ textAlign: 'center' }}>VIEW MORE</Text>
+                <Text style={{ textAlign: 'center' }}>VIEW DETAIL</Text>
             </TouchableOpacity>
-        </Card>)
+        </Card>
+    )
 }
 
 export default ProductCard
