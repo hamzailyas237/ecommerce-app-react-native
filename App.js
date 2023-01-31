@@ -1,8 +1,8 @@
 
 import React from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import AppNavigation from './config/AppNavigation'
-import Login from './pages/login/Login'
+import 'react-native-gesture-handler';
 
 const App = () => {
   return (

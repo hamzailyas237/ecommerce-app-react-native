@@ -24,7 +24,7 @@ const Signup = ({ navigation }) => {
             auth()
                 .createUserWithEmailAndPassword(email, password)
                 .then((res) => {
-                    navigation.navigate('Home')
+                    navigation.navigate('Splash')
                     Alert.alert('Sign up message', 'User signed up successfully');
                     database().ref(`users/${res.user.uid}`).set({
                         name,

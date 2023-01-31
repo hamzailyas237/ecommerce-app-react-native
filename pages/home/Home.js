@@ -5,6 +5,9 @@ import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, ScrollView, Text, View } from 'react-native'
 import ProductCard from '../../components/ProductCard';
 
+
+
+
 const Home = () => {
 
     const [products, setProducts] = useState([])
@@ -21,19 +24,20 @@ const Home = () => {
             })
     }, [])
 
-    return (
-        <ScrollView>
-            <View>
 
-                {
-                    loader ? <ActivityIndicator size="large" style={{ marginTop: 10 }} />
-                        :
-                        products && products.map(product => {
-                            return <ProductCard key={product.id} product={product} />
-                        })
-                }
-            </View>
-        </ScrollView>
+
+    return (
+            <ScrollView>
+                <View>
+                    {
+                        loader ? <ActivityIndicator size="large" style={{ marginTop: 10 }} />
+                            :
+                            products && products.map(product => {
+                                return <ProductCard key={product.id} product={product} />
+                            })
+                    }
+                </View>
+            </ScrollView>
 
     )
 }

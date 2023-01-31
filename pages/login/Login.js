@@ -20,8 +20,7 @@ const Login = ({ navigation }) => {
         if (email && password) {
             auth().signInWithEmailAndPassword(email, password)
                 .then(() => {
-                    navigation.navigate('Home')
-                    Alert.alert('Sign in message', 'User signed in successfully');
+                    navigation.navigate('Splash')
                 })
                 .catch(error => {
                     Alert.alert('Sign up error', `${error.message}`);

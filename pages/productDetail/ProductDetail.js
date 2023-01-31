@@ -4,17 +4,12 @@ import React, { useState } from 'react'
 import { TouchableOpacity, ScrollView } from 'react-native';
 import { Card } from '@rneui/themed';
 import { Header } from '@rneui/themed';
-import RNEListItemAccordion from '../../components/header/AppHeader';
 
 const ProductDetail = ({ route }) => {
     const product = route.params
-    console.log(product);
 
     return (
         <ScrollView>
-
-            <RNEListItemAccordion />
-
             <Card>
                 <Card.Title>{product.title}</Card.Title>
                 <Card.Divider />
