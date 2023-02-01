@@ -6,6 +6,7 @@ import React, { useState } from 'react'
 import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, Alert, ScrollView } from 'react-native'
 import auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const Signup = ({ navigation }) => {
@@ -23,16 +24,16 @@ const Signup = ({ navigation }) => {
         if (name && email && phone && password) {
             auth()
                 .createUserWithEmailAndPassword(email, password)
-                .then((res) => {
+                .then(async (res) => {
                     navigation.navigate('Splash')
+                    await AsyncStorage.setItem('uid', res.user.uid)
                     Alert.alert('Sign up message', 'User signed up successfully');
                     database().ref(`users/${res.user.uid}`).set({
                         name,
                         email,
                         phone,
-                        password
+                        password,
                     });
-
                 })
                 .catch(error => {
                     Alert.alert('Sign up error', `${error.message}`);

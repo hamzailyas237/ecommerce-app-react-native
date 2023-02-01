@@ -5,6 +5,8 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, Alert, ScrollView } from 'react-native'
 import auth from '@react-native-firebase/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 
 const Login = ({ navigation }) => {
@@ -19,8 +21,10 @@ const Login = ({ navigation }) => {
     const loginUser = () => {
         if (email && password) {
             auth().signInWithEmailAndPassword(email, password)
-                .then(() => {
+                .then(async (res) => {
                     navigation.navigate('Splash')
+                    console.log(res.user.uid)
+                    await AsyncStorage.setItem('uid', res.user.uid)
                 })
                 .catch(error => {
                     Alert.alert('Sign up error', `${error.message}`);
