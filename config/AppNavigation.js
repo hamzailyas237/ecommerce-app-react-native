@@ -2,11 +2,11 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Login from '../pages/login/Login';
-import Signup from '../pages/signup/Signup';
-import ProductDetail from '../pages/productDetail/ProductDetail';
-import Splash from '../pages/splash/Splash';
-import MainScreen from '../pages/mainScreen/MainScreen';
+import Login from '../screens/login/Login';
+import Signup from '../screens/signup/Signup';
+import ProductDetail from '../screens/productDetail/ProductDetail';
+import Splash from '../screens/splash/Splash';
+import MainScreen from '../screens/mainScreen/MainScreen';
 
 
 const Stack = createNativeStackNavigator();

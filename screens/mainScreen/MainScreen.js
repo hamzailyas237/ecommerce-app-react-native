@@ -5,6 +5,7 @@ import React from 'react'
 import { View } from 'react-native';
 import Home from '../home/Home';
 import Location from '../location/Location';
+import Post from '../post/Post';
 import Profile from '../profile/Profile';
 import TabNavigation from '../tabNavigation/TabNavigation';
 
@@ -25,6 +26,10 @@ const MainScreen = () => {
                 name="Map"
                 component={Location}
                 options={{ headerShown: false }}
+            />
+            <Drawer.Screen
+                name="Post"
+                component={Post}
             />
             <Drawer.Screen
                 name="TabNavigation"

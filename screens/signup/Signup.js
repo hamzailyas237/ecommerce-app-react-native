@@ -28,6 +28,7 @@ const Signup = ({ navigation }) => {
                     navigation.navigate('Splash')
                     await AsyncStorage.setItem('uid', res.user.uid)
                     Alert.alert('Sign up message', 'User signed up successfully');
+                 
                     database().ref(`users/${res.user.uid}`).set({
                         name,
                         email,

@@ -27,7 +27,7 @@ const Login = ({ navigation }) => {
                     await AsyncStorage.setItem('uid', res.user.uid)
                 })
                 .catch(error => {
-                    Alert.alert('Sign up error', `${error.message}`);
+                    Alert.alert('Sign in error', `${error.message}`);
                 });
         }
         else {
